@@ -68,11 +68,11 @@ bcftools filter -i '%QUAL>30' HTO_freebayes_parallel.vcf > "${SAMPLE}_filtered_S
 
 echo "running scSplit count"
 
-"${SCSPLIT_PYTHON}" /home/ttm3567/63_tylert/Analysis_Algorithms/scSplit/scSplit count \
+"${SCSPLIT_PYTHON}" /scSplit/scSplit count \
   -v "${SAMPLE}_filtered_SNVs.vcf" \
   -i "${SAMPLE}_filtered.sorted.bam" \
   -b "$BARCODES" \
-  -c /home/ttm3567/63_tylert/Analysis_Algorithms/common_snvs_hg38_chr \
+  -c /common_snvs_hg38_chr \
   -r "${SAMPLE}_ref_filtered.csv" \
   -a "${SAMPLE}_alt_filtered.csv" \
   -o "$OUTDIR"
@@ -82,7 +82,7 @@ echo "running scSplit run"
 RESULT_DIR="${OUTDIR}/${SAMPLE}_scSplit_Results"
 mkdir -p "$RESULT_DIR"
 
-"${SCSPLIT_PYTHON}" /home/ttm3567/63_tylert/Analysis_Algorithms/scSplit/scSplit run \
+"${SCSPLIT_PYTHON}" /scSplit/scSplit run \
   -r "${SAMPLE}_ref_filtered.csv" \
   -a "${SAMPLE}_alt_filtered.csv" \
   -n "$DONORS" \
@@ -90,7 +90,7 @@ mkdir -p "$RESULT_DIR"
 
 echo "running scSplit genotype"
 
-"${SCSPLIT_PYTHON}" /home/ttm3567/63_tylert/Analysis_Algorithms/scSplit/scSplit genotype \
+"${SCSPLIT_PYTHON}" /scSplit/scSplit genotype \
   -r "${SAMPLE}_ref_filtered.csv" \
   -a "${SAMPLE}_alt_filtered.csv" \
   -p "${RESULT_DIR}/scSplit_P_s_c.csv" \
