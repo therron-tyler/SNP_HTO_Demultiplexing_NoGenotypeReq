@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH -A b1042
+#SBATCH -A alloc
 #SBATCH -p genomics
 #SBATCH -t 40:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=tyler.therron@northwestern.edu
+#SBATCH --mail-user=email
 #SBATCH --output=%x.%j.out
 #SBATCH --mem=60gb
 #SBATCH --job-name=vireo
@@ -18,12 +18,12 @@ else
   conda activate vireo_env
 fi
 
-WORK_DIR=/home/ttm3567/rootdir_scratch/20250930_RS1_SNP_decon/TEST_soup_or_cell_algo
+WORK_DIR=/work_dir
 
 bash SNPdemux_Vireo_v1.sh \
-  --sample RS1 \
+  --sample sample \
   --bam "${WORK_DIR}/possorted_genome_bam.bam" \
-  --barcodes "${WORK_DIR}/RS1_barcodes.tsv" \
+  --barcodes "${WORK_DIR}/barcodes.tsv" \
   --outdir "${WORK_DIR}" \
   --n-donor 4 \
   --threads 14
