@@ -7,11 +7,11 @@ FASTA_GENERATE_REGIONS="${FASTA_GENERATE_REGIONS:-fasta_generate_regions.py}"
 SCSPLIT_PYTHON="${SCSPLIT_PYTHON:-python}"
 
 ############################################
-# minimal named-arg parser (only what you asked)
+# Default Values listed below
 ############################################
 THREADS="${SLURM_CPUS_PER_TASK:-12}"
 OUTDIR="."
-SAMPLE="RS1"
+SAMPLE="sample"
 BAM="possorted_genome_bam.bam"
 DONORS=6
 
