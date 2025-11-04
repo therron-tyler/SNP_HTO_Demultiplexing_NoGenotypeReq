@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH -A b1042
+#SBATCH -A alloc
 #SBATCH -p genomics
 #SBATCH -t 48:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=tyler.therron@northwestern.edu
+#SBATCH --mail-user=email
 #SBATCH --output=%x.%j.out
 #SBATCH --mem=90gb
 #SBATCH --job-name=single
@@ -15,9 +15,9 @@ module load singularity
 
 singularity exec \
   --cleanenv \
-  --bind /home/ttm3567/rootdir_scratch/20250930_RS1_SNP_decon:/work \
-  --bind /home/ttm3567/b1063/Reference/refdata-gex-GRCh38-2020-A/fasta:/ref \
-  /home/ttm3567/63_tylert/Analysis_Algorithms/souporcell_release.sif \
+  --bind /working_dir:/work \
+  --bind /refdata-gex-GRCh38-2020-A/fasta:/ref \
+  /singularity_download_location/souporcell_release.sif \
   bash -lc '
     set -euo pipefail
     cd /work
